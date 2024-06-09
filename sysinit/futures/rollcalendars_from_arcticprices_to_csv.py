@@ -28,7 +28,7 @@ def build_and_write_roll_calendar(
     instrument_code,
     output_datapath=arg_not_supplied,
     write=True,
-    check_before_writing=True,
+    check_before_writing=False,
     input_prices=arg_not_supplied,
     roll_parameters_data: rollParametersData = arg_not_supplied,
     roll_parameters: rollParameters = arg_not_supplied,
