@@ -208,7 +208,9 @@ def _check_if_process_status_is_okay_to_run(process_to_run: processToRun) -> boo
         wait_reporter.report_wait_condition(
             "because already running", NOT_STARTING_CONDITION
         )
-        return False
+        # I need to add this and set the return to True to end the process in case it is called again for running
+        process_to_run._finish()
+        return True
 
     elif okay_to_run is process_stop:
         wait_reporter.report_wait_condition(
