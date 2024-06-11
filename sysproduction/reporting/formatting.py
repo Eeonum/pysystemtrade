@@ -96,42 +96,24 @@ def nice_format_roll_table(roll_table: pd.DataFrame) -> pd.DataFrame:
 
 
 def nice_format_slippage_table(slippage_table: pd.DataFrame) -> pd.DataFrame:
-    if isinstance(slippage_table.Difference, pd.Series):
-        slippage_table.Difference = slippage_table.Difference.round(1)
-    else:
-        slippage_table.Difference = pd.Series(slippage_table.Difference).round(1)
-    if isinstance(slippage_table.bid_ask_trades, pd.Series):
-        slippage_table.bid_ask_trades = slippage_table.bid_ask_trades.round(4)
-    else:
-        slippage_table.bid_ask_trades = pd.Series(slippage_table.bid_ask_trades).round(4)
-    if isinstance(slippage_table.total_trades, pd.Series):
-        slippage_table.total_trades = slippage_table.total_trades.round(4)
-    else:
-        slippage_table.total_trades = pd.Series(slippage_table.total_trades).round(4)
-    if isinstance(slippage_table.bid_ask_sampled, pd.Series):
-        slippage_table.bid_ask_sampled = slippage_table.bid_ask_sampled.round(4)
-    else:
-        slippage_table.bid_ask_sampled = pd.Series(slippage_table.bid_ask_sampled).round(4)
-    if isinstance(slippage_table.total_sampled, pd.Series):
-        slippage_table.weight_trades = slippage_table.weight_trades.round(2)
-    else:
-        slippage_table.weight_trades = pd.Series(slippage_table.weight_trades).round(2)
-    if isinstance(slippage_table.weight_samples, pd.Series):
-        slippage_table.weight_samples = slippage_table.weight_samples.round(2)
-    else:
-        slippage_table.weight_samples = pd.Series(slippage_table.weight_samples).round(2)
-    if isinstance(slippage_table.weight_config, pd.Series):
-        slippage_table.weight_config = slippage_table.weight_config.round(2)
-    else:
-        slippage_table.weight_config = pd.Series(slippage_table.weight_config).round(2)
-    if isinstance(slippage_table.estimate, pd.Series):
-        slippage_table.estimate = slippage_table.estimate.round(4)
-    else:
-        slippage_table.estimate = pd.Series(slippage_table.estimate).round(4)
-    if isinstance(slippage_table.Configured, pd.Series):
-        slippage_table.Configured = slippage_table.Configured.round(4)
-    else:
-        slippage_table.Configured = pd.Series(slippage_table.Configured).round(4)
+    slippage_table['Difference'] = pd.to_numeric(slippage_table['Difference'], errors='coerce')
+    slippage_table['Difference'] = slippage_table['Difference'].round(1)
+    slippage_table['bid_ask_trades'] = pd.to_numeric(slippage_table['bid_ask_trades'], errors='coerce')
+    slippage_table['bid_ask_trades'] = slippage_table['bid_ask_trades'].round(4)
+    slippage_table['total_trades'] = pd.to_numeric(slippage_table['total_trades'], errors='coerce')
+    slippage_table['total_trades'] = slippage_table['total_trades'].round(4)
+    slippage_table['bid_ask_sampled'] = pd.to_numeric(slippage_table['bid_ask_sampled'], errors='coerce')
+    slippage_table['bid_ask_sampled'] = slippage_table['bid_ask_sampled'].round(4)
+    slippage_table['weight_trades'] = pd.to_numeric(slippage_table['weight_trades'], errors='coerce')
+    slippage_table['weight_trades'] = slippage_table['weight_trades'].round(2)
+    slippage_table['weight_samples'] = pd.to_numeric(slippage_table['weight_samples'], errors='coerce')
+    slippage_table['weight_samples'] = slippage_table['weight_samples'].round(2)
+    slippage_table['weight_config'] = pd.to_numeric(slippage_table['weight_config'], errors='coerce')
+    slippage_table['weight_config'] = slippage_table['weight_config'].round(2)
+    slippage_table['estimate'] = pd.to_numeric(slippage_table['estimate'], errors='coerce')
+    slippage_table['estimate'] = slippage_table['estimate'].round(4)
+    slippage_table['Configured'] = pd.to_numeric(slippage_table['Configured'], errors='coerce')
+    slippage_table['Configured'] = slippage_table['Configured'].round(4)
 
     return slippage_table
 
